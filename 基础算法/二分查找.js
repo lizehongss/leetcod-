@@ -17,7 +17,7 @@ function biaryFind (arr, target) {
 }
 // console.log(biaryFind([1,2,3,4,5,6,7,8,9], 1))
 
-//查找第一个值大于等于给定值的元素
+//查找第一个值等于给定值的元素
 function searchFirstVal (arr, target) {
   if (arr.length === 0) return -1
   var low = 0
@@ -37,7 +37,7 @@ function searchFirstVal (arr, target) {
 }
 // console.log(searchFirstVal([1,2,3,5,5,5,7,8,9], 5))
 
-// 查找最后一个值小于等于给定值的元素
+// 查找最后一个值等于给定值的元素
 function searchLastVal (arr, target) {
   if (arr.length === 0) return -1
   var low = 0
@@ -91,4 +91,4 @@ function bsearch2 (arr, target) {
   }
   return -1
 }
-console.log(bsearch2([3,5,6,8,9,10], 7))
+// console.log(bsearch2([3,5,6,8,9,10], 7))
