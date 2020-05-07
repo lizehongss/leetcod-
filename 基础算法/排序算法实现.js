@@ -159,25 +159,28 @@ function sortBuckets (array) {
 // 计数排序
 
 function counting (array) {
-  // 获取最大值
+  // 获取最大值, 记录最大值
   var maxValue = array[0]
   for(var i = 0; i< array.length; i++) {
     if (array[i] > maxValue) {
       maxValue = array[i]
     }
   }
-  // 定义一个长度为maxvalue的数组
+  // 定义一个长度为maxvalue+1的数组
   var counts = new Array(maxValue + 1)
   // 计算每个元素的个数，放入到counts桶中
   // counts下标是元素，值是元素个数
   array.forEach(function(item) {
     if(!counts[item]) {
+      //  初始化counts[item]
       counts[item] = 0
     }
+    // 给counts[item]加值， 为值出现次数
     counts[item] ++
   })
   var sortedIndex = 0
   counts.forEach(function(count,i) {
+    // 给array
     while(count > 0) {
       array[sortedIndex] = i
       sortedIndex++
