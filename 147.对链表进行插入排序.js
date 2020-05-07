@@ -17,10 +17,24 @@
  * @return {ListNode}
  */
 var insertionSortList = function(head) {
-  if (!head.next) return head
-  while(head.next) {
-    // let val = head.val
+  if (!head) return head
+  let preHead = new ListNode(0)
+  let curr  = head
+  let pre = preHead
+  let next = null
+  while (curr) {
+    next = curr.next
+    while(pre.next && pre.next.val < curr.val) {
+      pre = pre.next
+    }
+    curr.next = pre.next
+    pre.next = curr
+    pre = preHead
+
+    
+    curr = next
   }
+  return preHead.next
 };
 // @lc code=end
 
