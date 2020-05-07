@@ -16,30 +16,39 @@
  * @param {ListNode[]} lists
  * @return {ListNode}
  */
-function mergeTwoLists (l1, l2) {
-  let prehead = new ListNode(-1)
-  let prev = prehead
-  while(l1 != null && l2 != null) {
-    if(l1.val < l2.val) {
-      prev.next = l1
-      l1 = l1.next
-    } else {
-      prev.next = l2
-      l2 = l2.next
-    }
-    prev = prev.next
+function merge2Lists(l0, l1) {
+  let p0 = l0, 
+      p1 = l1, 
+      c = new ListNode(null),
+      pc = c;
+  while(p0 || p1) {
+      if (p0 && p1) {
+          if(p0.val < p1.val) {
+              pc.next = p0;
+              p0 = p0.next;
+          } else {
+              pc.next = p1;
+              p1 = p1.next;
+          }
+      } else if (p0) {
+          pc.next = p0;
+          break;
+      } else if (p1) {
+          pc.next = p1;
+          break;
+      }
+      pc = pc.next;
   }
-  prev.next = 11 === null ? l2:l1
-  return prehead.next
+  return c.next;
 }
 var mergeKLists = function(lists) {
   if (lists.length === 0) return null;
   if (lists.length === 1) return lists[0];
   if (lists.length === 2) {
-    return mergeTwoLists(lists[0], lists[1]);
+    return merge2Lists(lists[0], lists[1]);
   }
   let mid = lists.length >> 1
-  return mergeTwoLists(mergeKLists(lists.slice(0, mid)), mergeKLists(lists.slice(mid, lists.length)));
+  return merge2Lists(mergeKLists(lists.slice(0, mid)), mergeKLists(lists.slice(mid, lists.length)));
 };
 // @lc code=end
 
