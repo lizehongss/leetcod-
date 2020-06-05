@@ -40,10 +40,12 @@ let result = []
  quickSort(nums, 0, nums.length - 1)
  if (nums.length <3) return []
  for(let i = 0; i<nums.length; i++) {
-   let L = i
+  if(nums[i] > 0) break; // 如果当前数字大于0，则三数之和一定大于0，所以结束循环
+  if(i > 0 && nums[i] == nums[i-1]) continue; 
+   let L = i + 1
    let R = nums.length -1
    while(L<R) {
-     if (nums[L] + nums[L] +nums[R] === 0) {
+     if (nums[i] + nums[L] +nums[R] === 0) {
        result.push([nums[i], nums[L], nums[R]])
        while(L<R&&nums[L] === nums[L+1]) {
          L=L+1
@@ -52,15 +54,15 @@ let result = []
          R=R-1
        }
        L = L+1
-       R = R+1
-     } else if (nums[L] + nums[L] +nums[R] > 0) {
+       R = R-1
+     } else if (nums[i] + nums[L] +nums[R] > 0) {
        R = R-1
      } else {
        L = L+1
      }
    }
  }
-
+ return result
 };
 // @lc code=end
 
