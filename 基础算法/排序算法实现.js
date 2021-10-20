@@ -88,7 +88,7 @@ function merge(a, b) {
 
 
 // 快速排序
-function quick(arr, left, right) { 
+function quick(arr, left, right) {
   if (left < right) {
     var pivot = right
     var partitonIndex = partition(arr, pivot, left, right)
