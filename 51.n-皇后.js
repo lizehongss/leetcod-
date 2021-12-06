@@ -18,38 +18,29 @@ var solveNQueens = function(n) {
             return
         }
         for (let i = 0; i<n; i++) {
-            if ( !isSame(i,used))  continue
+            if ( !isSame(deep,i,used))  continue
             path.push(set(i))
             used[deep] = i
             setValue(deep+1, used)
-            used[deep] = undefined
+            used[deep] = ''
             path.pop()
         }
     }
-    function isSame( index, used) {
-        let isOk = true
-        for (let i = 0; i < used.length; i++  ) {
-            if (used[i] === index) {
-                isOk = false
-                break
+    function isSame( deep, index, used) {
+        let leftUp = index - 1
+        let rightUp = index + 1
+        for (let i = deep -1; i >=0; i--) {
+            if (used[i] == index) return false
+            if (leftUp >=0) {
+                if (used[i] == leftUp) return false
             }
-        }
-        for (let i = index - 1; i > 0; i--) {
-            if (used[i] === i) {
-                isOk = false
-                break
+            if (rightUp < n) {
+                if (used[i] == rightUp) return false
             }
+            --leftUp
+            ++ rightUp
         }
-        let deep =  index - 1
-        for (let i = index + 1; i< n; i++) {
-            if (deep < 0) break
-            if (used[deep] === i) {
-                isOk = false
-                break
-            }
-            deep--
-        }
-        return isOk
+        return true
     }
     function set(pos) {
         let s = ''
@@ -62,7 +53,7 @@ var solveNQueens = function(n) {
         }
         return s
     }
-    setValue(0, [])
+    setValue(0, new Array(n).fill(''))
     return result
 
 };
