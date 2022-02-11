@@ -23,6 +23,9 @@ function bubbleSort (array) {
 // 插入排序
 // O(n^2)
 
+//将数组中的数据分为两个区间，已排序区间和未排序区间。初始已排序区间只有一个元素，就是数组的第一个元素。
+// 插入算法的核心思想是取未排序区间中的元素，在已排序区间中找到合适的插入位置将其插入，
+//并保证已排序区间数据一直有序。重复这个过程，直到未排序区间中元素为空，算法结束
 function insertion (array) {
   for(var i = 0; i < array.length; i++) {
     var val  = array[i]
@@ -44,6 +47,8 @@ function insertion (array) {
 // 选择排序
 // O(n^2)
 // 选择排序每次会从未排序区间中找到最小的元素，将其放到已排序区间的末尾。
+// 选择排序算法的实现思路有点类似插入排序，也分已排序区间和未排序区间。
+// 但是选择排序每次会从未排序区间中找到最小的元素，将其放到已排序区间的末尾
 function selection(array) {
   if(array.length <= 1)  return
   for (var i = 0; i < array.length-1; i++) {
@@ -88,7 +93,7 @@ function merge(a, b) {
 
 
 // 快速排序
-function quick(arr, left, right) { 
+function quick(arr, left, right) {
   if (left < right) {
     var pivot = right
     var partitonIndex = partition(arr, pivot, left, right)
