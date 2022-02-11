@@ -1,5 +1,6 @@
 
 // 冒泡
+// O(n^2)
 function bubbleSort (array) {
   if (array.length <= 1) return
   var falg = false
@@ -20,6 +21,8 @@ function bubbleSort (array) {
 
 
 // 插入排序
+// O(n^2)
+
 function insertion (array) {
   for(var i = 0; i < array.length; i++) {
     var val  = array[i]
@@ -39,6 +42,8 @@ function insertion (array) {
 
 
 // 选择排序
+// O(n^2)
+// 选择排序每次会从未排序区间中找到最小的元素，将其放到已排序区间的末尾。
 function selection(array) {
   if(array.length <= 1)  return
   for (var i = 0; i < array.length-1; i++) {
