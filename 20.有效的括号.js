@@ -33,26 +33,27 @@
 // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 var isValid = function(s) {
   let sArray = s.split('')
-  let stack = []
-  let mapObject = {
+  let mapObj = {
     '(': ')',
     '[': ']',
     '{': '}'
   }
   let isOk = true
-  sArray.forEach(item => {
-    if(item === '(' || item === '[' || item === '{') {
-      stack.push(item)
+  let sortArray = []
+  for(let i = 0; i< sArray.length; i++) {
+    if(sArray[i] === '(' || sArray[i] === '{' || sArray[i] === '[') {
+      sortArray.push(sArray[i])
     } else {
-      if(item === mapObject[stack[stack.length - 1]]) {
-        stack.pop()
+      if(sArray[i] === mapObj[sortArray[sortArray.length - 1]]) {
+        sortArray.pop()
       } else {
         isOk = false
       }
     }
-  })
-  if(stack.length != 0) { return false }
+  }
+  if(sortArray.length != 0) return false
   return isOk
+
 };
 // @lc code=end
 

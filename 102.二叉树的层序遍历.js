@@ -18,24 +18,23 @@
  * @return {number[][]}
  */
 var levelOrder = function(root) {
-    let arr = []
-    function deep(arr, root, deepNum) {
-        if(!root) return
-        if (Array.from(arr[deep])){
-            arr[deep].push(root.val)
-        } else {
-            arr[deep] = []
-            arr[deep].push(root.val)
+    if (root === null ) return []
+    let result = []
+    let query = [root]
+    while(query.length != 0) {
+        let curArray = []
+        let length = query.length
+        for(let i = 0 ; i< length; i++) {
+            let node = query.shift()
+            curArray.push(node.val)
+            node.left  && query.push(node.left)
+            node.right && query.push(node.right)
         }
-        if(root.left) {
-            deep(arr, root.left, deepNum+1)
-        }
-        if (root.right) {
-            deep(arr, root.right, deepNum+1)
-        }
+        result.push(curArray)
+
     }
-    deep(arr, root, 0)
-    return arr
+    return result
+
 };
 // @lc code=end
 
